@@ -1,0 +1,7 @@
+**/node_modules
+
+.git_priv
+.gitignore_priv
+packages/utils
+packages/web-client
+packages/webserver

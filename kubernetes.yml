@@ -1,0 +1,54 @@
+# webserver
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: diw-alpha
+  labels:
+    app: diw-alpha
+spec:
+  minReadySeconds: 10
+  replicas: 2
+  selector:
+      matchLabels:
+        app: diw-alpha
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: diw-alpha
+    spec:
+      containers:
+      - image: gcr.io/eternal-unity-204509/github-diwglobal-diw-dapp:master
+        name: diw-alpha
+        imagePullPolicy: Always
+        args: ["server"]
+        env:
+        - name: FOR_GODS_SAKE_PLEASE_REDEPLOY
+          value: "0"
+        resources:
+          requests:
+            memory: "512Mi"
+        ports:
+        - containerPort: 3000
+          protocol: TCP
+---
+# load balancer
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: diw-alpha-lb
+  name: diw-alpha-lb
+spec:
+  type: LoadBalancer
+  externalTrafficPolicy: "Local"
+  ports:
+    - port: 80
+      targetPort: 3000
+      protocol: TCP
+  selector:
+    app: diw-alpha

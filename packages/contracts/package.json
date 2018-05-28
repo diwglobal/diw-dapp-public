@@ -1,0 +1,20 @@
+{
+  "name": "contracts",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "solidity-utils": "^1.0.2",
+    "utils": "^0.1.0",
+    "web-client": "^0.1.0",
+    "zeppelin-solidity": "^1.9.0"
+  },
+  "devDependencies": {
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "babel-preset-stage-3": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "truffle": "^4.1.11",
+    "truffle-hdwallet-provider": "0.0.5"
+  }
+}
